@@ -12,7 +12,39 @@ const config = {
   appId: "1:268361712659:web:45d11db6664b7e32326be6"
 };
 
-firebase.initializeApp(config);
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  // for signing out, null will be returned and passed in
+  if (!userAuth) return;
+
+  // receiving a queryReference object representing the current place in the db
+  // using documentRef object to perform CRUD method
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  // using the reference to get the real data
+  const snapShot = await userRef.get();
+
+  // check if user already exist
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    // creat user document
+    try {
+      await userRef.set({
+        displayName, 
+        email,
+        createdAt,
+        ...additionalData
+      })
+
+    } catch (error) {
+      console.log('error creating user', error.message);
+    }
+  }
+  return userRef;
+}
+
+firebase.initializeApp(config); 
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

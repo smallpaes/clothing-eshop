@@ -12,10 +12,11 @@ class App extends React.Component {
     super();
     this.state = {
       currentUser: null
-    }
+    };
   }
 
   unsubscribeFromAuth = null
+  unsubscribeFromDocument = null
 
   componentDidMount () {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -26,7 +27,7 @@ class App extends React.Component {
         
         // when code got executed, return a snapshot obj
         // representing the data currently stored in the db
-        userRef.onSnapshot(snapShot => {
+        this.unsubscribeFromDocument = userRef.onSnapshot(snapShot => {
           // receive the user data just stored or already stored in the db
           this.setState({
             currentUser: {
@@ -34,16 +35,17 @@ class App extends React.Component {
               // get actual properties on the obj
               ...snapShot.data()
             }
-          })
-        })
+          });
+        });
       } else {
-        this.setState({ currentUser: userAuth })
+        this.setState({ currentUser: userAuth });
       }
     })
   }
 
   componentWillUnmount () {
     this.unsubscribeFromAuth();
+    this.unsubscribeFromDocument();
   }
 
   render () {

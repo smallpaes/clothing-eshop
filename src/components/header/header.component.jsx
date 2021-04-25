@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// connect is a HOC letting us modify the component to have access to Redux
+import { connect } from 'react-redux';
+
 import { auth } from '../../firebase/firebase.utils';
 
 // ReactComponent tells create react app that we want a 
@@ -31,4 +34,9 @@ const Header = ({ currentUser }) => (
   </div>
 )
 
-export default Header;
+// function allowing us to access the state(root reducer)
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Header);

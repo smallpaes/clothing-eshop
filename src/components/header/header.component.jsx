@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // connect is a HOC letting us modify the component to have access to Redux
 import { connect } from 'react-redux';
@@ -15,32 +14,32 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 // react component rendering an SVG rather than its filename
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-import './header.styles.scss';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
 const Header = ({ currentUser, hidden }) => (
-  <div className='header'>
-    <Link className='logo-container' to='/'>
+  <HeaderContainer>
+    <LogoContainer to='/'>
       <Logo className='logo' />
-    </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to='/shop'>
         SHOP
-      </Link>
-      <Link className='option' to='/contact'>
+      </OptionLink>
+      <OptionLink to='/contact'>
         CONTACT
-      </Link>
+      </OptionLink>
       {
         currentUser ? 
-          <div className='option' onClick={() => auth.signOut()} >SIGN OUT</div>
+          <OptionLink as='div' onClick={() => auth.signOut()} >SIGN OUT</OptionLink>
           :
-          <Link className='option' to='/signin'>SIGN IN</Link>
+          <OptionLink to='/signin'>SIGN IN</OptionLink>
       }
       <CartIcon />
-    </div>
+    </OptionsContainer>
     {
       !hidden && <CartDropdown />
     }
-  </div>
+  </HeaderContainer>
 )
 
 // function allowing us to access the state(root reducer)

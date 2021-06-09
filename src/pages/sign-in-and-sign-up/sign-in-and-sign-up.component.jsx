@@ -1,13 +1,13 @@
 import React from 'react';
-import SignIn from '../../components/sign-in/sign-in.component';
-import SignUp from '../../components/sign-up/sign-up.component';
+import SignInContainer from '../../components/sign-in/sign-in.container';
+import SignUpContainer from '../../components/sign-up/sign-up.container';
 
 import { SignInAndSignUpPageContainer } from './sign-in-and-sign-up.component.styles';
 
 const SignInAndSignUpPage = () => (
   <SignInAndSignUpPageContainer>
-    <SignIn />
-    <SignUp />
+    <SignInContainer />
+    <SignUpContainer />
   </SignInAndSignUpPageContainer>
 );
 

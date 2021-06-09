@@ -10,40 +10,19 @@ import ShopPageContainer from './pages/shop/shop.container';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPageContainer from './pages/checkout/checkout.container';
 
-import Header from './components/header/header.component';
+import HeaderContainer from './components/header/header.container';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-
-import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser  } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 class App extends React.Component {
   unsubscribeFromAuth = null
   unsubscribeFromDocument = null
 
   componentDidMount () {
-    const { setCurrentUser } = this.props;
+    const { checkUserSession } = this.props;
+    checkUserSession()
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // could be null when signing out
-      if (userAuth) {
-        // store the data to the database
-        const userRef = await createUserProfileDocument(userAuth);
-        
-        // when code got executed, return a snapshot obj
-        // representing the data currently stored in the db
-        this.unsubscribeFromDocument = userRef.onSnapshot(snapShot => {
-          // receive the user data just stored or already stored in the db
-          setCurrentUser({
-            id: snapShot.id,
-            // get actual properties on the obj
-            ...snapShot.data()
-          });
-        });
-      } else {
-        setCurrentUser(userAuth);
-      }
-    })
   }
 
   componentWillUnmount () {
@@ -54,7 +33,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <HeaderContainer />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPageContainer} />
@@ -72,10 +51,10 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )(App);

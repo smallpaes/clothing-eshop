@@ -4,13 +4,13 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPageContainer from './pages/shop/shop.container';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPageContainer from './pages/checkout/checkout.container';
-
 import HeaderContainer from './components/header/header.container';
+
+import { GlobalStyle } from './global.styles';
 
 import { selectCurrentUser  } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
@@ -22,6 +22,8 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
+      {/* Apply all styles to the application */}
+      <GlobalStyle />
       <HeaderContainer />
       <Switch>
         <Route exact path='/' component={HomePage} />

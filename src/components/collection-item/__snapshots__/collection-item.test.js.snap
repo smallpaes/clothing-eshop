@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollectionItem component Should render CollectionItem component 1`] = `ShallowWrapper {}`;
-
-exports[`Should render CollectionItem component 1`] = `ShallowWrapper {}`;
+exports[`CollectionItem component Should render CollectionItem component 1`] = `
+<styled.div>
+  <BackgroundImage
+    className="image"
+    imageUrl="www.test.com"
+  />
+  <styled.div>
+    <styled.span>
+      Shoe
+    </styled.span>
+    <styled.span>
+      320
+    </styled.span>
+  </styled.div>
+  <AddButton
+    inverted={true}
+    onClick={[Function]}
+  >
+    Add to card
+  </AddButton>
+</styled.div>
+`;

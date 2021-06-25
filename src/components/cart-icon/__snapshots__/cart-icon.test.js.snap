@@ -1,3 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CartIcon Component Should render CartIcon component 1`] = `ShallowWrapper {}`;
+exports[`CartIcon Component Should render CartIcon component 1`] = `
+<CartIconContainer
+  onClick={[MockFunction]}
+>
+  <Styled(Component) />
+  <ItemCountContainer>
+    0
+  </ItemCountContainer>
+</CartIconContainer>
+`;

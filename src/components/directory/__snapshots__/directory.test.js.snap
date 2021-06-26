@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Directory component Should render PreviewContainer component 1`] = `
+<DirectoryContainer>
+  <withRouter(MenuItem)
+    imageUrl="www.test.com"
+    key="1"
+    size="large"
+    title="title"
+  />
+  <withRouter(MenuItem)
+    imageUrl="www.test.com"
+    key="2"
+    size="large"
+    title="title"
+  />
+  <withRouter(MenuItem)
+    imageUrl="www.test.com"
+    key="3"
+    size="large"
+    title="title"
+  />
+  <withRouter(MenuItem)
+    imageUrl="www.test.com"
+    key="4"
+    size="large"
+    title="title"
+  />
+</DirectoryContainer>
+`;

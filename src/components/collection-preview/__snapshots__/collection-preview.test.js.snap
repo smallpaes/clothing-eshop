@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollectionPreview component Should render CollectionPreview component 1`] = `
+<styled.div>
+  <TitleContainer
+    onClick={[Function]}
+  >
+    HATS
+  </TitleContainer>
+  <PreviewContainer>
+    <Connect(CollectionItem)
+      item={
+        Object {
+          "id": 1,
+          "imageUrl": "www.test.com",
+          "name": "item1",
+          "price": 211,
+        }
+      }
+      key="1"
+    />
+    <Connect(CollectionItem)
+      item={
+        Object {
+          "id": 2,
+          "imageUrl": "www.test.com",
+          "name": "item2",
+          "price": 211,
+        }
+      }
+      key="2"
+    />
+    <Connect(CollectionItem)
+      item={
+        Object {
+          "id": 3,
+          "imageUrl": "www.test.com",
+          "name": "item3",
+          "price": 211,
+        }
+      }
+      key="3"
+    />
+    <Connect(CollectionItem)
+      item={
+        Object {
+          "id": 4,
+          "imageUrl": "www.test.com",
+          "name": "item4",
+          "price": 211,
+        }
+      }
+      key="4"
+    />
+  </PreviewContainer>
+</styled.div>
+`;
